@@ -1,0 +1,19 @@
+﻿.card {
+  &-header {
+    font-size: 20px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    &:first-child {
+      border-radius: 20px 20px 0 0;
+    }
+  }
+  &-primary{    
+    .card-header {
+      background: $prymaryColor;
+      color: #fff;
+    }
+    .card-body {
+      border: none;
+    }
+  }
+}

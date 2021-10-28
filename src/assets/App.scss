@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
+@import "./ui-kit/vars.scss";
+
+body {
+  font-family: "Open Sans";
+  background: #E5E5E5;
+}
+
+.b-login{
+  width: 480px;
+  margin: 50px auto 0;
+  .card {
+    border: none;
+    border-radius: 20px;
+    &-header {
+      text-align: center;
+    }
+    &-body {
+      border-radius:0 0 20px 20px;
+      padding: 70px 0 90px 0;
+    }
+  }
+}
+
+.login-form{
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.form-control{
+  height: 40px;
+}
+
+.form-select{
+  height: 40px;
+}
+
+.form-label{
+  font-size: 14px;
+}
+
+.mb-50{
+  margin-bottom: 50px;
+}
+
+.dashboard-layaut{
+  display: flex;
+  justify-content: center;
+}
+
+.b-dashboard {    
+  margin: 0 auto;
+  margin-top: 40px;  
+  .tab-content{    
+    background: #fff;
+    padding: 0;  
+    border-radius: 0 20px 20px 20px;
+    overflow: hidden;
+    /* 
+    overflow-y: auto;
+    height: 400px; */
+    table{      
+      .checkStar{
+        color:$prymaryColor;
+      }     
+    }
+  }
+}
+
+.nav{
+  &-tabs{
+    font-size: 14px;
+    .nav{
+      &-item{
+        &:not(:first-child){
+          margin-left: -1px;
+        }
+        &:first-child {
+          .nav-link{
+            border-radius: 20px 0 0 0;
+          }
+        }
+        &:last-child {
+          .nav-link{
+            border-radius: 0 20px 0 0;
+          }
+        }
+      }
+      &-link{
+        border-radius: 0;
+        border: 1px solid $prymaryColor;
+        box-sizing: border-box;
+        background: #fff;
+        color: $prymaryColor;
+        padding: 9px 46px 12px 46px; 
+        &.active{
+          background-color: $prymaryColor;
+          border: 1px solid $prymaryColor;
+          color: #fff;
+          &:hover {
+            background-color: $prymaryColor;
+            border: 1px solid $prymaryColor;
+            color: #fff;
+          }
+        }
+        &:hover {
+          background-color: $prymaryColorHover;
+          border: 1px solid $prymaryColorHover;
+          color: #fff;
+        }
+        &:active{
+          background-color: $prymaryColorActive;
+          border: 1px solid $prymaryColorActive;
+          color: #fff;
+        }
+      }    
+    }
+  }
+}
+
+.h-400{
+  height: 400px;
+}
+
+.overflow-auto{
+  overflow: auto;
+}
+.w-16{
+  width: 18px;
+}
+
+.checkStar{
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.tab-card{
+  &-header {
+    background: $prymaryColor;
+    text-align: center;
+    font-size: 17px;
+    padding: 17px;
+    color: #fff;
+  }
+  &-body{
+    padding: 0 5px;    
+  }
+}
+
+.table-exchange{
+  width: 750px;
+}
+
+.converter{
+  width: 750px;
+  &-form{
+    padding: 48px 0;
+    &-control {
+      width: 80px;
+      .form-select{
+        font-size: 14px;
+      }
+    }
+  }
+  &-separator{
+    height: 1px;
+    background-color: #E1E1E1;  
+    border-bottom: 1px solid #E1E1E1;  
+  }
+  &-res{
+    padding: 25px 0;
+    &-num{
+      font-size: 27px;
+    }
+  }
+}
+
+.form-control-primary{
+  border-color: $prymaryColor;
+}
+
+.form-input-error{
+  font-size: 12px;  
+}
+
+.form-control.is-invalid {
+  background: none;
+}
+
+.form-group{
+  position: relative;
+  .form-input-error{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;    
+  }
+}
+
+.login-form{
+  padding-bottom: 24px;
+  position: relative;
+  &-error{
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;        
+  }
+}
+
+table.history-table{    
+  white-space: nowrap;
+  //width: 1000px;
+  tbody{
+    td{
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+}
+
+.overflow-y-auto{
+  overflow: hidden;
+  overflow-y: auto;
+}

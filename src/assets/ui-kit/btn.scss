@@ -1,0 +1,46 @@
+﻿.btn {
+  font-size: 16px;
+  display: inline-block;
+  font-family: "Open Sans";
+  font-weight: 400;
+  color:#fff;
+  text-align: center;
+  text-decoration: noe;
+  white-space: nowrap;
+  vertical-align: middle;  
+  user-select: none;
+  background-color: #1A237E;
+  border: #1A237E;
+  padding: 8px 20px;
+  border-radius: 20px;
+  &:hover {
+    background: #232FA9;
+    text-decoration: none;
+  }
+  &:active {
+    background: #111755;
+  }
+
+  &-block {
+    display: block;
+    width: 100%;
+  }
+}
+
+button {
+  &.btn {
+    cursor: pointer;    
+  }
+}
+
+a {
+  &.btn {
+    cursor: pointer;    
+  }
+}
+
+.btn-primary {
+  &.disabled, &:disabled {
+    background: $prymaryColor;
+  }
+}
