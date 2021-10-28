@@ -1,41 +1,37 @@
-﻿import React, { FC, useEffect } from "react";
+﻿import React, { FC, useEffect, useState } from "react";
 import { Table, Spinner} from "react-bootstrap"
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import {IHistory} from '../models/IHistory';
-import {fetchQuotes} from '../store/reducers/fetchHistory'
+import {fetchHistory} from '../store/reducers/fetchHistory'
+import {histoyrSlice} from '../store/reducers/HistorySlice'
 import Moment from 'react-moment';
+
+import Pagination from './Pagination'
 
 
 
 const fields:string[] = ['Актив', 'Начало', 'Котировка', 'Конец', 'Котировка', 'Прибыль']
   
 const History:FC = () =>  {
-  let {history, isLoading, error} = useAppSelector(state => state.historyReducer)  
+  let {history, historyPart, isLoading, error} = useAppSelector(state => state.historyReducer)  
 
-  const dispatch  = useAppDispatch()
+  const dispatch  = useAppDispatch()  
 
-  useEffect(() => {    
-    dispatch(fetchQuotes())
+  useEffect(() => {
+    dispatch(fetchHistory())
   }, [])
 
-  const sortArr = [...history]  
+  const updatePartHistory = (page:number) => {
+    dispatch(histoyrSlice.actions.updateHistoryPart(page))    
+  } 
   
-  sortArr.sort((i, t) => {
-    const iDate = +new Date(i.finishDate)
-    const tDate = +new Date(t.finishDate)
-
-    if (iDate > tDate) {
-      return -1;
-    }
-    if (iDate < tDate) {
-      return 1;
-    }
-    return 0;
-  })
+  const profitNumb = (profit:string) => {
+    return +profit > 0 ? `+${profit}` : profit;
+  }
 
   return (    
-    <div className="h-400 overflow-y-auto">              
-      <Table bordered hover size="sm" className="thead-sticky history-table">
+    <div className="h-400 history-table">
+      <Table bordered hover size="sm" className="thead-sticky">
         <thead>
           <tr>             
             {fields.map((field, i) => {
@@ -45,7 +41,7 @@ const History:FC = () =>  {
         </thead>
 
         <tbody>
-          {history.map((field, i) => {
+          {historyPart.map((field, i) => {
             return (
               <tr key={i}>                
                 <td>{field.asset}</td>
@@ -66,11 +62,15 @@ const History:FC = () =>  {
                     {field.finishDate}
                   </Moment>                  
                 </td>
-                <td>{field.profit}</td>               
+                <td className="text-end">
+                  {profitNumb(field.profit)}
+                </td>
               </tr>)
           })}            
         </tbody>     
       </Table> 
+
+      <Pagination total={history.length} perPage={10} change={(page) => updatePartHistory(page)}/>
     </div>
   )
 }

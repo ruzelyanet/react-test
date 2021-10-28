@@ -13,7 +13,7 @@ const DashLayaut:FC = () => {
   }
 
   return (
-    <div className="dashboard-layaut">
+    <div className="dashboard-layaut d-lg-flex justify-content-lg-center">
       <div>
         <div className="text-end p-4">
           <Button variant="secondary" onClick={logOut}>Выйти</Button>

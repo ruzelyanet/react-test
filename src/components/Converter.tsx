@@ -55,12 +55,12 @@ const Converter: FC = () => {
         Конвертация валют
       </div>
       <div className="tab-card-body">
-        <div className="container">
+        <div className="container-fluid">
           <div className="converter">
             <div className="converter-form">
               <div className="row justify-content-center">
                 <div className="col-lg-7">
-                  <div className="d-flex align-items-end">
+                  <div className="d-md-flex align-items-end">
                     <div className="converter-form-control">
                       <label>Сумма</label>
                       <Form.Control 
@@ -71,7 +71,7 @@ const Converter: FC = () => {
                         onChange={(e:React.ChangeEvent<HTMLInputElement>) => changeSum(e)} />
                     </div>
 
-                    <div className="d-flex mx-3">
+                    <div className="d-flex mx-md-3 my-3 my-md-0">
                       <div className="converter-form-control">
                         <Form.Select className="form-control-primary" disabled={isLoading} value={coin} onChange={(e) => cointChange(e)}>                          
                           {Object.keys(rates).map((key, i) => <option value={key} key={i}>{key}</option>)}
@@ -96,18 +96,18 @@ const Converter: FC = () => {
 
             <div className="converter-separator"></div>
             
-            { 
-              calc ?
-              <div className="converter-res">
+            <div className="converter-res">
+              { 
+                calc ?
                 <div className="row justify-content-center">
                   <div className="col-lg-7">
                     <label>Итого</label>
                     <div className="converter-res-num">{calc}</div>
                   </div>
-                </div>
-              </div>
-              : ''
-            }
+                </div> : ''
+              }              
+            </div>
+
           </div>
         </div>
       </div>

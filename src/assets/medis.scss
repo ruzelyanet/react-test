@@ -1,0 +1,28 @@
+﻿
+@media screen and (max-width: 768px) {
+  .b-dashboard{
+    .tab-content{
+      border-radius: 0 0 20px 20px;
+    }
+
+    .nav{
+      &-tabs{
+        display: flex;        
+      }
+      &-item{
+        flex-grow: 1;
+      }
+      &-link{
+        display: block;
+        width: 100%;
+        padding: 9px 10px 12px;
+      }
+    }
+  }
+
+  .table-exchange{
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;    
+  }
+}

@@ -8,7 +8,7 @@ interface IHistoryRes {
   deals: IHistory[];
 }
 
-export const fetchQuotes = () => async (dispatch: AppDispatch) => {
+export const fetchHistory = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(histoyrSlice.actions.fetchHistory())
     
@@ -18,7 +18,22 @@ export const fetchQuotes = () => async (dispatch: AppDispatch) => {
 
     const {deals} = res.data
 
+    deals.sort((i, t) => {
+      const iDate = +new Date(i.finishDate)
+      const tDate = +new Date(t.finishDate)
+  
+      if (iDate > tDate) {
+        return -1;
+      }
+      if (iDate < tDate) {
+        return 1;
+      }
+      return 0;
+    })
+
+
     dispatch(histoyrSlice.actions.fetchHistorySuccess(deals))
+    dispatch(histoyrSlice.actions.updateHistoryPart(1))
   } catch (e:any) {
     dispatch(histoyrSlice.actions.fetchHistoryError(e.message))
   }
