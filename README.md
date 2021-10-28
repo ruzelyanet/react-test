@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-##.env
+## .env
 REACT_APP_API = test-front-spa.mmtestprojectsfactory.com/api/
 
 ## Available Scripts
