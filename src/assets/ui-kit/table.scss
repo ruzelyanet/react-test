@@ -31,8 +31,7 @@
   }
 
   &.thead-sticky {
-    position: relative;
-    overflow: auto;        
+    position: relative;    
     thead{
       th {
         position: sticky; 
