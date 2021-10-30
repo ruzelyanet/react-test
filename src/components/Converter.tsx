@@ -1,51 +1,41 @@
-﻿import React, { FC, useState, useEffect, FormEvent} from "react";
+﻿import React, { FC, useState, useEffect} from "react";
 import { Form, Button, FormTextProps } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { fetchQuotes } from "../store/reducers/fetchQuotes";
+import { converterSlice } from '../store/reducers/ConverterSlice';
 
 const Converter: FC = () => {
-  
-  const [sum, setSum] = useState<string>('')
-  const [coin, setСoin] = useState<string>('')
-  const [currency, setCurrency] = useState<string>('')
-  const [selectCoin, setSelectCoin] = useState<object>({})
-
-  const [calc, setCalc] = useState<number>()
-
   const dispatch  = useAppDispatch()
+
+  const [sum, setSum] = useState<string>('')
+  const [calc, setCalc] = useState<number>()
   
-  let {quotes, isLoading, error} = useAppSelector(state => state.quoteReducer) 
+  let {isLoading} = useAppSelector(state => state.quoteReducer)
+  let {rates, coin, currency, selectCurrency} = useAppSelector(state => state.converterSlice)
 
   useEffect(() => {    
     dispatch(fetchQuotes())
+    
   }, [])
 
-  let rates:any = {}
+  const cointChange = (e:React.FormEvent<HTMLSelectElement>):void => {    
+    dispatch(converterSlice.actions.setCoin(e.currentTarget.value))
+    dispatch(converterSlice.actions.setSelectCurrency(rates[e.currentTarget.value]))
 
-  quotes.forEach((item, index):void => {
-    let [coin, currency] = item.asset.split('/')
-    
-    if(!rates[coin]) {
-      rates[coin] = {}
-    }
-    rates[coin][currency] = item.quote
-  })
-
-  const cointChange = (e:React.FormEvent<HTMLSelectElement>):void => {
-    setСoin(e.currentTarget.value)        
-    setCurrency(Object.keys(rates[e.currentTarget.value])[0])
-    setSelectCoin(rates[e.currentTarget.value])
+    const currencyInitialState = Object.keys(rates[e.currentTarget.value])[0]
+    dispatch(converterSlice.actions.setCurrency(currencyInitialState))   
   }
 
-  const currencyChange = (e:React.FormEvent<HTMLSelectElement>):void => {
-    setCurrency(e.currentTarget.value)    
+  const currencyChange = (e:React.FormEvent<HTMLSelectElement>):void => {   
+    dispatch(converterSlice.actions.setCurrency(e.currentTarget.value))
   }
 
   const changeSum = (e:React.ChangeEvent<HTMLInputElement>):void => {    
     setSum(e.currentTarget.value)
   }
 
-  const calulate = () => {    
+  const calсulate = () => {
+    console.log(coin, currency)
     setCalc(+sum * +rates[coin][currency])
   }
   
@@ -80,13 +70,13 @@ const Converter: FC = () => {
 
                       <div className="converter-form-control ms-2">
                         <Form.Select value={currency}  className="form-control-primary" disabled={isLoading} onChange={(e) => currencyChange(e)}>                          
-                          {Object.keys(selectCoin).map((key, i) => <option value={key} key={i}>{key}</option>)}
+                          {Object.keys(selectCurrency).map((key, i) => <option value={key} key={i}>{key}</option>)}
                         </Form.Select>
                       </div>
                     </div>
 
                     <div>
-                      <Button variant="primary" disabled={!currency.length || !sum || !coin} onClick={calulate}>Рассчитать</Button>
+                      <Button variant="primary" disabled={!currency.length || !sum || !coin} onClick={calсulate}>Рассчитать</Button>
                     </div>
                   </div>
 

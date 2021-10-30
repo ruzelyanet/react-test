@@ -1,10 +1,12 @@
 ﻿import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import quoteReducer from './reducers/QuoteSlice'
 import historyReducer from './reducers/HistorySlice'
+import converterSlice from './reducers/ConverterSlice'
 
 const rootReducer = combineReducers({
   quoteReducer,
-  historyReducer
+  historyReducer,
+  converterSlice
 })
 
 export const setupStore = () => {
